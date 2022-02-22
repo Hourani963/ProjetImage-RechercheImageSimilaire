@@ -1,14 +1,16 @@
 import fr.unistra.pelican.Image;
+import jdk.jshell.execution.Util;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.TreeMap;
+import java.util.*;
 
 public class RechercheImage {
     private String pathDossier;
     private ImageOperations image;
 
     TreeMap<Double, String> tree_map = new TreeMap<Double, String>();
+
 
     public RechercheImage(String pathDossier, ImageOperations image) throws Exception {
         this.pathDossier = pathDossier;
@@ -33,7 +35,11 @@ public class RechercheImage {
                 //************ Organiser
                 tree_map.put(img.getValeurSimilarite(),img.getNom());
             }
-            System.out.println(tree_map);
+            //************ Sort TreeMap
+            entriesSortedByValues(tree_map);
+            //************ get first 10 elements
+            getMeuilleurImagesSimilaire(tree_map);
+            //System.out.println(tree_map);
         } else {
             System.err.println("Nom de repertoire invalide");
         }
@@ -57,5 +63,37 @@ public class RechercheImage {
         imageI.setValeurSimilarite(distanceTotal);
         imageR.setValeurSimilarite(0);
         System.out.println(distanceTotal);
+    }
+
+    private void getMeuilleurImagesSimilaire(TreeMap map){
+        // ICI JE Choisie les meuillers 10 images
+        SortedMap<Double, String> firstTen = putFirstEntries(10, map);
+        System.err.println(firstTen);
+    }
+
+
+    private static <K,V extends Comparable<? super V>>
+    SortedSet<Map.Entry<K,V>> entriesSortedByValues(Map<K,V> map) {
+        SortedSet<Map.Entry<K,V>> sortedEntries = new TreeSet<Map.Entry<K,V>>(
+                new Comparator<Map.Entry<K,V>>() {
+                    @Override public int compare(Map.Entry<K,V> e1, Map.Entry<K,V> e2) {
+                        int res = e1.getValue().compareTo(e2.getValue());
+                        return res != 0 ? res : 1;
+                    }
+                }
+        );
+        sortedEntries.addAll(map.entrySet());
+        return sortedEntries;
+    }
+    public static <V, K> SortedMap<K,V> putFirstEntries(int max, SortedMap<K,V> source) {
+        int count = 0;
+        TreeMap<K,V> target = new TreeMap<K,V>();
+        for (Map.Entry<K,V> entry:source.entrySet()) {
+            if (count >= max) break;
+
+            target.put(entry.getKey(), entry.getValue());
+            count++;
+        }
+        return target;
     }
 }

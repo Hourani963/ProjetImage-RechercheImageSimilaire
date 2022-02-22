@@ -8,7 +8,7 @@ public class Main {
 
         ImageOperations img1 = new ImageOperations("C:\\Users\\UGARIT\\Desktop\\GIT\\ProjetImage\\images\\test\\AhmadAndFadiMedian.jpg");
 
-        RechercheImage rechercheImage = new RechercheImage("C:\\Users\\UGARIT\\Desktop\\GIT\\ProjetImage\\images\\test",img1);
+        RechercheImage rechercheImage = new RechercheImage("C:\\Users\\UGARIT\\Desktop\\GIT\\ProjetImage\\images\\motos",img1);
 
 
     }
