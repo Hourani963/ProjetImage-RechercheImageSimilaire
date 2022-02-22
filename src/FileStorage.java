@@ -2,19 +2,21 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class FileStorage {
 
-    public FileStorage() {
+    private String nomFile;
+
+    public FileStorage(String nomFile) {
+        this.nomFile = nomFile;
         createFile();
-        writeFile();
-        readFile();
     }
 
     private void createFile(){
         try {
-            File myObj = new File("indexation.txt");
+            File myObj = new File(nomFile + ".txt");
             if (myObj.createNewFile()) {
                 System.out.println("File created: " + myObj.getName());
             } else {
@@ -26,20 +28,21 @@ public class FileStorage {
         }
     }
 
-    private void writeFile(){
+    public void writeFile(String nomImg, double[][] histo){
         try {
-            FileWriter myWriter = new FileWriter("indexation.txt");
-            myWriter.write("Files in Java might be tricky, but it is fun enough!");
+            FileWriter myWriter = new FileWriter("indexation.txt",true);
+            double a = 0;
+            myWriter.write(nomImg+"=>"+Arrays.deepToString(histo) +"*");
             myWriter.close();
-            System.out.println("Successfully wrote to the file.");
         } catch (IOException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
     }
 
-    private void readFile(){
+    public void readFile(){
         try {
+
             File myObj = new File("indexation.txt");
             Scanner myReader = new Scanner(myObj);
             while (myReader.hasNextLine()) {
@@ -47,6 +50,7 @@ public class FileStorage {
                 System.out.println(data);
             }
             myReader.close();
+
         } catch (FileNotFoundException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();

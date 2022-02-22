@@ -8,19 +8,45 @@ import java.util.*;
 public class RechercheImage {
     private String pathDossier;
     private ImageOperations image;
+    private File repertoir;
 
     TreeMap<Double, String> tree_map = new TreeMap<Double, String>();
 
-
+    private FileStorage fileStorage = new FileStorage("indexation");
     public RechercheImage(String pathDossier, ImageOperations image) throws Exception {
         this.pathDossier = pathDossier;
         this.image = image;
-        recherche();
+        this.repertoir = new File(this.pathDossier);
+        //setIndexation();
+        rechercheIndexation();
+    }
+
+    private void setIndexation() throws Exception {
+        String listeA[] = repertoir.list();
+        // crée un ficier pour le stockage
+
+
+        if (listeA != null) {
+            for (int i = 0; i < listeA.length; i++) {
+                //System.out.println(liste[i]);
+                ImageOperations img = new ImageOperations(pathDossier + "\\" + listeA[i]);
+                img.setNom(listeA[i]);
+                img.getFiltrationMedian();
+                img.getHistoDiscretisNormalise();
+                fileStorage.writeFile(img.getNom(), img.getJusthistoDiscretiNormalise());
+            }
+            System.out.println("Successfully wrote to the file.");
+        }
+    }
+    private void rechercheIndexation() throws Exception {
+        this.image.getFiltrationMedian();
+        this.image.getHistoDiscretisNormalise();
+
+        fileStorage.readFile();
     }
 
     private void recherche() throws Exception {
-        File repertoire = new File(this.pathDossier);
-        String liste[] = repertoire.list();
+        String liste[] = repertoir.list();
 
         this.image.getFiltrationMedian();
         if (liste != null) {
