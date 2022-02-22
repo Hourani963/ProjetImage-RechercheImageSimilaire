@@ -6,9 +6,14 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
 
-        ImageOperations img1 = new ImageOperations("C:\\Users\\UGARIT\\Desktop\\GIT\\ProjetImage\\images\\test\\AhmadAndFadiMedian.jpg");
+        FileStorage fileStorage = new FileStorage();
+        ImageOperations RequeteImage = new ImageOperations("C:\\Users\\UGARIT\\Desktop\\GIT\\ProjetImage\\images\\test\\AhmadAndFadiMedian.jpg");
 
-        RechercheImage rechercheImage = new RechercheImage("C:\\Users\\UGARIT\\Desktop\\GIT\\ProjetImage\\images\\motos",img1);
+
+        // Doit rechercher dans MySQL et fair une méthod pour actualiser la base de donnée
+        RechercheImage rechercheImage = new RechercheImage("C:\\Users\\UGARIT\\Desktop\\GIT\\ProjetImage\\images\\test",RequeteImage);
+
+
 
 
     }

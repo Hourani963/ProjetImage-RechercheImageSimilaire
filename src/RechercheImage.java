@@ -30,7 +30,7 @@ public class RechercheImage {
                 img.setNom(liste[i]);
                 img.getFiltrationMedian();
                 img.getHistoDiscretisNormalise();
-                //************ Calcculer
+                //************ Calculer
                 calculeSimilarite(image, img);
                 //************ Organiser
                 tree_map.put(img.getValeurSimilarite(),img.getNom());
@@ -85,7 +85,7 @@ public class RechercheImage {
         sortedEntries.addAll(map.entrySet());
         return sortedEntries;
     }
-    public static <V, K> SortedMap<K,V> putFirstEntries(int max, SortedMap<K,V> source) {
+    private static <V, K> SortedMap<K,V> putFirstEntries(int max, SortedMap<K,V> source) {
         int count = 0;
         TreeMap<K,V> target = new TreeMap<K,V>();
         for (Map.Entry<K,V> entry:source.entrySet()) {
@@ -96,4 +96,8 @@ public class RechercheImage {
         }
         return target;
     }
+
+
+
+
 }
