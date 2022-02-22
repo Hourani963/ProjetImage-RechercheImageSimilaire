@@ -44,7 +44,8 @@ public class ImageOperations {
         this.valeurSimilarite = valeurSimilarite;
     }
 
-    public double[][] getJusthistoDiscretiNormalise(){
+    public double[][] getJusthistoDiscretiNormalise() throws IOException {
+
         return this.histoDiscretiNormalise;
     }
     public Image getImage() {
