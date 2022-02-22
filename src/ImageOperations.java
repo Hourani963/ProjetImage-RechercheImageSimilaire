@@ -12,6 +12,12 @@ public class ImageOperations {
     private int largeur;
     private int hauteur;
     private int nbCanaux;
+    private double[][] histogramRGB;
+    private double[][] histogramDiscretis;
+    private double[][] histoDiscretiNormalise;
+
+    private double valeurSimilarite;
+    private String nom;
 
     public ImageOperations(String path) {
         this.image = ImageLoader.exec(path);
@@ -21,8 +27,67 @@ public class ImageOperations {
         this.image.setColor(true);
         System.out.println("largeur = " + largeur + " hauteur = "+ hauteur+ " Nombre de Canaux = "+ nbCanaux);
     }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public double getValeurSimilarite() {
+        return valeurSimilarite;
+    }
+
+    public void setValeurSimilarite(double valeurSimilarite) {
+        this.valeurSimilarite = valeurSimilarite;
+    }
+
+    public double[][] getJusthistoDiscretiNormalise(){
+        return this.histoDiscretiNormalise;
+    }
     public Image getImage() {
         return image;
+    }
+
+    public double[][] getHistogramRGB() {
+        HistogramTools histogramTools = new HistogramTools();
+        double[][] tabHistRGB = new double[256][3];
+
+        for(int x=0; x<largeur-1;x++){
+            for(int y=0; y<hauteur-1 ; y++){
+
+                int pixelRed = this.image.getPixelXYBByte(x,y,0);
+                int pixelGreen = this.image.getPixelXYBByte(x,y,1);
+                int pixelBlue = this.image.getPixelXYBByte(x,y,2);
+
+                tabHistRGB[pixelRed][0]++;
+                tabHistRGB[pixelGreen][1]++;
+                tabHistRGB[pixelBlue][2]++;
+
+            }
+        }
+        //histogramTools.plotHistogram(histogramTools.normalisationHisto(histogramTools.discretisationHistogram(tabHistRGB),largeur*hauteur));
+        this.histogramRGB = tabHistRGB;
+        return this.histogramRGB;
+    }
+
+    public double[][] getHistogramDiscretis() throws IOException {
+        HistogramTools histogramTools = new HistogramTools();
+        this.histogramDiscretis = histogramTools.discretisationHistogram(getHistogramRGB());
+        return this.histogramDiscretis;
+    }
+
+    public double[][] getHistoDiscretisNormalise() throws IOException {
+        HistogramTools histogramTools = new HistogramTools();
+        this.histoDiscretiNormalise = histogramTools.normalisationHisto(getHistogramDiscretis(), this.largeur*this.hauteur);
+        return histoDiscretiNormalise;
+    }
+
+    public void showHistogram(double[][] histo) throws IOException {
+        HistogramTools histogramTools = new HistogramTools();
+        histogramTools.plotHistogram(histo);
     }
 
     public int getLargeur() {
@@ -121,26 +186,8 @@ public class ImageOperations {
         this.image = imageFiltration;
     }
 
-    public void getHistogram() throws IOException {
-        HistogramTools histogramTools = new HistogramTools();
-        double[][] tabHistRGB = new double[256][3];
 
-        for(int x=0; x<largeur-1;x++){
-            for(int y=0; y<hauteur-1 ; y++){
 
-                int pixelRed = this.image.getPixelXYBByte(x,y,0);
-                int pixelGreen = this.image.getPixelXYBByte(x,y,1);
-                int pixelBlue = this.image.getPixelXYBByte(x,y,2);
-
-                tabHistRGB[pixelRed][0]++;
-                tabHistRGB[pixelGreen][1]++;
-                tabHistRGB[pixelBlue][2]++;
-
-            }
-        }
-
-        histogramTools.plotHistogram(histogramTools.normalisationHisto(histogramTools.discretisationHistogram(tabHistRGB),largeur*hauteur));
-    }
 
 
 }
