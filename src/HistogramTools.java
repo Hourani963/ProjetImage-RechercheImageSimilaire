@@ -1,7 +1,7 @@
 import java.awt.Color;
 import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
+
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartFrame;
@@ -102,6 +102,15 @@ public class HistogramTools {
         return discretisationHistRGB;
     }
 
+    public double[][] normalisationHisto(double[][] histogram, int nbrPixelImage){
+        double[][] histoNormalise = new double[26][3];
+        for(int i=0 ; i < histogram.length-1; i++){
+            histoNormalise[i][0] = histogram[i][0]/nbrPixelImage;
+            histoNormalise[i][1] = histogram[i][1]/nbrPixelImage;
+            histoNormalise[i][2] = histogram[i][2]/nbrPixelImage;
+        }
+        return histoNormalise;
+    }
 
     public static void saveHistogram(double [] histogram, String pathToSave) throws IOException{
 

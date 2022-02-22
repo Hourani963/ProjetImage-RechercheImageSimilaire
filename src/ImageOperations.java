@@ -139,10 +139,7 @@ public class ImageOperations {
             }
         }
 
-        histogramTools.plotHistogram(histogramTools.discretisationHistogram(tabHistRGB));
-
-
-
+        histogramTools.plotHistogram(histogramTools.normalisationHisto(histogramTools.discretisationHistogram(tabHistRGB),largeur*hauteur));
     }
 
 

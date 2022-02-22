@@ -7,7 +7,7 @@ public class Main {
         ImageOperations img1 = new ImageOperations("C:\\Users\\UGARIT\\Desktop\\AhmadAndFadiMedian.jpg");
         //img1.getFiltrationMedian();
         img1.getHistogram();
-        Viewer2D.exec(img1.getImage());
+        //Viewer2D.exec(img1.getImage());
 
     }
 }
