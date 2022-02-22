@@ -2,6 +2,7 @@ import fr.unistra.pelican.ByteImage;
 import fr.unistra.pelican.Image;
 import fr.unistra.pelican.algorithms.io.ImageLoader;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -17,7 +18,23 @@ public class ImageOperations {
         this.largeur = image.getXDim();
         this.hauteur = image.getYDim();
         this.nbCanaux = image.getBDim();
+        this.image.setColor(true);
         System.out.println("largeur = " + largeur + " hauteur = "+ hauteur+ " Nombre de Canaux = "+ nbCanaux);
+    }
+    public Image getImage() {
+        return image;
+    }
+
+    public int getLargeur() {
+        return largeur;
+    }
+
+    public int getHauteur() {
+        return hauteur;
+    }
+
+    public int getNbCanaux() {
+        return nbCanaux;
     }
 
     public void getFiltrationMedian() throws Exception{
@@ -100,8 +117,33 @@ public class ImageOperations {
         else{
             throw new Exception("image doit avoir 3 caneaux");
         }
-
-
+        imageFiltration.setColor(true);
         this.image = imageFiltration;
     }
+
+    public void getHistogram() throws IOException {
+        HistogramTools histogramTools = new HistogramTools();
+        double[][] tabHistRGB = new double[256][3];
+
+        for(int x=0; x<largeur-1;x++){
+            for(int y=0; y<hauteur-1 ; y++){
+
+                int pixelRed = this.image.getPixelXYBByte(x,y,0);
+                int pixelGreen = this.image.getPixelXYBByte(x,y,1);
+                int pixelBlue = this.image.getPixelXYBByte(x,y,2);
+
+                tabHistRGB[pixelRed][0]++;
+                tabHistRGB[pixelGreen][1]++;
+                tabHistRGB[pixelBlue][2]++;
+
+            }
+        }
+
+        histogramTools.plotHistogram(histogramTools.discretisationHistogram(tabHistRGB));
+
+
+
+    }
+
+
 }
