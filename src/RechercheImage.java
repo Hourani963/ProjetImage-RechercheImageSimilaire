@@ -9,14 +9,20 @@ public class RechercheImage {
     private String pathDossier;
     private ImageOperations image;
     private File repertoir;
-
+    private int nombreImagesIndexation;
     TreeMap<Double, String> tree_map = new TreeMap<Double, String>();
-
+    TreeMap<Double, Integer> tree_mapIndexation = new TreeMap<Double, Integer>();
     private FileStorage fileStorage = new FileStorage("indexation");
     public RechercheImage(String pathDossier, ImageOperations image) throws Exception {
         this.pathDossier = pathDossier;
         this.image = image;
         this.repertoir = new File(this.pathDossier);
+        partieA();
+    }
+    public void partieA() throws Exception {
+        recherche();
+    }
+    public void partieB() throws Exception {
         //setIndexation();
         rechercheIndexation();
     }
@@ -25,7 +31,7 @@ public class RechercheImage {
         String listeA[] = repertoir.list();
         // crée un ficier pour le stockage
 
-
+        this.nombreImagesIndexation = listeA.length;
         if (listeA != null) {
             for (int i = 0; i < listeA.length; i++) {
                 //System.out.println(liste[i]);
@@ -39,10 +45,17 @@ public class RechercheImage {
         }
     }
     private void rechercheIndexation() throws Exception {
+
+        String listeA[] = repertoir.list();///////////////////************** to delete
+        this.nombreImagesIndexation = listeA.length;///////////////// to delete
+
+
         this.image.getFiltrationMedian();
         this.image.getHistoDiscretisNormalise();
-
-        fileStorage.readFile();
+        double[][][] storageHistogramIndexation = new double[26][3][nombreImagesIndexation];
+        storageHistogramIndexation = fileStorage.readFile();
+        calculeSimilariteIndexation(image,storageHistogramIndexation);
+        //System.out.println(Arrays.deepToString(storageHistogramIndexation));
     }
 
     private void recherche() throws Exception {
@@ -71,6 +84,31 @@ public class RechercheImage {
         }
     }
 
+    private void calculeSimilariteIndexation(ImageOperations imageR, double[][][] histogramsToutesImages) throws IOException {
+        System.err.println(nombreImagesIndexation);
+        for(int i=0; i<this.nombreImagesIndexation; i++){
+            double distanceR = 0;
+            double distanceG = 0;
+            double distanceB = 0;
+            double distanceTotal=0;
+            for(int j=0; j< imageR.getJusthistoDiscretiNormalise().length; j++){
+                distanceR += Math.pow(imageR.getHistoDiscretisNormalise()[j][0] - histogramsToutesImages[j][0][i],2);
+                distanceG += Math.pow(imageR.getHistoDiscretisNormalise()[j][1] - histogramsToutesImages[j][1][i],2);
+                distanceB += Math.pow(imageR.getHistoDiscretisNormalise()[j][2] - histogramsToutesImages[j][2][i],2);
+            }
+            distanceR = Math.sqrt(distanceR);
+            distanceG = Math.sqrt(distanceG);
+            distanceB = Math.sqrt(distanceB);
+            distanceTotal =distanceR+distanceG+distanceB;
+            tree_mapIndexation.put(distanceTotal,i);
+        }
+        entriesSortedByValues(tree_mapIndexation);
+        //************ get first 10 elements
+        getMeuilleurImagesSimilaire(tree_mapIndexation);
+        //System.out.println(tree_mapIndexation);
+        //TreeMap
+
+    }
     private void calculeSimilarite(ImageOperations imageR, ImageOperations imageI) throws IOException {
         double distanceR = 0;
         double distanceG = 0;
@@ -88,7 +126,7 @@ public class RechercheImage {
         distanceTotal =distanceR+distanceG+distanceB;
         imageI.setValeurSimilarite(distanceTotal);
         imageR.setValeurSimilarite(0);
-        System.out.println(distanceTotal);
+        //System.out.println(distanceTotal);
     }
 
     private void getMeuilleurImagesSimilaire(TreeMap map){

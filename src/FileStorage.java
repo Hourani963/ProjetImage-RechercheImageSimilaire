@@ -43,31 +43,50 @@ public class FileStorage {
         }
     }
 
-    public void readFile(){
+    // cette méthode rétourne tous les histogram de toutes les photos
+    // [0]=> pour les valeur de l'histogram parmis les 26 valeurs/ [1]=> pour la valeur RGB/ [2]=> pour l'image donnée/ pour récupérer le nom de l'image à la fin il faut utilisé [2]
+    public double[][][] readFile(){
         try {
-            String text = Files.readString(Paths.get("indexation.txt"));
-            System.out.println(text);
-            String[] allInfo = text.split("//");
-            for(int i=0; i<allInfo.length; i++){
-                String[] oneImage = allInfo[i].split("=>");
-                System.out.println(oneImage[0]);//image name
-                System.out.println(oneImage[1]);// image diagram
-            }
-            /*File myObj = new File("indexation.txt");
-            Scanner myReader = new Scanner(myObj);
-            while (myReader.hasNextLine()) {
-                String data = myReader.nextLine();
-                String[] dataA = data.split("//");
-                String[] dataB = dataA[1].split("=>");
-                System.out.println(dataB[0]);
-            }
-            myReader.close();*/
 
+            String text = Files.readString(Paths.get("indexation.txt"));
+            //System.out.println(text);
+            String[] allInfo = text.split("//");
+
+            double[][][] histos = new double[26][3][allInfo.length];
+            for(int i=0; i<allInfo.length; i++){
+
+                String[] oneImage = allInfo[i].split("=>");
+
+                //System.out.println(oneImage[0]);//image name
+                StringBuilder sb = new StringBuilder(oneImage[1]);
+                //System.out.println(oneImage[1]);
+                sb.deleteCharAt(0); //delete fist [
+                sb.deleteCharAt(sb.length()-1); // delete last ]
+                sb.deleteCharAt(sb.length()-1); // delete last ]
+                oneImage[1]= sb.toString();
+                for(int j=0; j<26 ; j++){
+                    String[] spiltHistoA = oneImage[1].split("],");
+                    StringBuilder sb2 = new StringBuilder(spiltHistoA[j]);
+                    sb2.deleteCharAt(0);
+                    if(j!=0) sb2.deleteCharAt(0);
+                    spiltHistoA[j] = sb2.toString();
+                    //System.out.println(spiltHistoA[j]);
+                    for(int x=0; x<3; x++){
+                        String[] spiltHistoB = spiltHistoA[j].split(", ");
+                        //System.out.println(spiltHistoB[x]);
+                        histos[j][x][i] = Double.parseDouble(spiltHistoB[x]);
+                    }
+                }
+
+            }
+
+            return histos;
         } catch (FileNotFoundException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return null;
     }
 }

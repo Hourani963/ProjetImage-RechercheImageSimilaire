@@ -7,10 +7,10 @@ public class Main {
     public static void main(String[] args) throws Exception {
 
 
-        ImageOperations RequeteImage = new ImageOperations("C:\\Users\\AboAlwalid\\Desktop\\GIT\\ProjetImage\\images\\test\\AhmadAndFadiMedian.jpg");
+        ImageOperations RequeteImage = new ImageOperations("C:\\Users\\ugarit\\Desktop\\GIT\\ProjetImage\\images\\test\\000.jpg");
 
 
-        RechercheImage rechercheImage = new RechercheImage("C:\\Users\\AboAlwalid\\Desktop\\GIT\\ProjetImage\\images\\test",RequeteImage);
+        RechercheImage rechercheImage = new RechercheImage("C:\\Users\\ugarit\\Desktop\\GIT\\ProjetImage\\images\\motos",RequeteImage);
 
 
 
