@@ -224,23 +224,29 @@ public class ImageOperations {
         return new double[] { h, s, v };
     }
 
-    public double[][] getHistogramHSV() {
-
-        double[][] tabHistHSB = new double[0][3];
+    public void getHistogramHSV() {
+        int count=0;
+        // précision 0.11 * 100 = 11
+        double[][] tabHistHSB = new double[101][3];
         for(int x=0; x<largeur-1;x++){
             for(int y=0; y<hauteur-1; y++){
                 float[] hsb = new float[3];
                 java.awt.Color.RGBtoHSB(image.getPixelXYBByte(x,y,0),image.getPixelXYBByte(x,y,1),image.getPixelXYBByte(x,y,2),hsb);
-                System.out.println(Arrays.toString(hsb));
+                //System.out.println(Arrays.toString(hsb));
 
-                double h = hsb[0];
-                double s = hsb[1];
-                double b = hsb[2];
+                double h = Math.round(hsb[0] * 100.0);
+                double s = Math.round(hsb[1] * 100.0);
+                double b = Math.round(hsb[2] * 100.0);
+
+                tabHistHSB[(int) h][0]++;
+                tabHistHSB[(int) s][1]++;
+                tabHistHSB[(int) b][2]++;
             }
         }
 
+        System.out.println(Arrays.deepToString(tabHistHSB));
+        System.out.println(count);
 
-        return tabHistHSV;
     }
 
 
