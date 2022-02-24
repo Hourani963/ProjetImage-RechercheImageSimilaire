@@ -1,9 +1,11 @@
 import fr.unistra.pelican.ByteImage;
 import fr.unistra.pelican.Image;
 import fr.unistra.pelican.algorithms.io.ImageLoader;
+import fr.unistra.pelican.util.Color;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 
 public class ImageOperations {
@@ -58,11 +60,10 @@ public class ImageOperations {
 
         for(int x=0; x<largeur-1;x++){
             for(int y=0; y<hauteur-1 ; y++){
-
                 int pixelRed = this.image.getPixelXYBByte(x,y,0);
                 int pixelGreen = this.image.getPixelXYBByte(x,y,1);
                 int pixelBlue = this.image.getPixelXYBByte(x,y,2);
-
+                // construir l'intensité de chaque pixel
                 tabHistRGB[pixelRed][0]++;
                 tabHistRGB[pixelGreen][1]++;
                 tabHistRGB[pixelBlue][2]++;
@@ -71,6 +72,7 @@ public class ImageOperations {
         }
         //histogramTools.plotHistogram(histogramTools.normalisationHisto(histogramTools.discretisationHistogram(tabHistRGB),largeur*hauteur));
         this.histogramRGB = tabHistRGB;
+        //System.out.println(Arrays.deepToString(tabHistRGB));
         return this.histogramRGB;
     }
 
@@ -186,6 +188,61 @@ public class ImageOperations {
         imageFiltration.setColor(true);
         this.image = imageFiltration;
     }
+
+    /*
+    il faut suprimmer cette méthode => peut être y a un problème dans le calculme de H
+     */
+    private double[] RGBtoHSV(double r, double g, double b) {
+        double h, s, v;
+
+        double min, max;
+
+        min = Math.min(Math.min(r, g), b);
+        max = Math.max(Math.max(r, g), b);
+
+        // V
+        v = max/255;
+
+        if(max == 0) s = 0;
+        else s = 1 - (min/max);
+
+        double A = (r - (0.5*g) - (0.5*b));
+
+        double C = Math.pow(r,2)+Math.pow(g,2)+Math.pow(b,2);
+
+        double D =  ((r*g) + (r*b) + (g*b));
+        double sqrt = Math.sqrt(C - D);
+        //System.err.println(sqrt);
+        if(sqrt == 0) h = 0;
+        else if(g>=b){
+            h = (Math.acos(A/sqrt));
+        }
+        else{
+
+            h = 360 - (Math.acos(A/sqrt));
+        }
+        return new double[] { h, s, v };
+    }
+
+    public double[][] getHistogramHSV() {
+
+        double[][] tabHistHSB = new double[0][3];
+        for(int x=0; x<largeur-1;x++){
+            for(int y=0; y<hauteur-1; y++){
+                float[] hsb = new float[3];
+                java.awt.Color.RGBtoHSB(image.getPixelXYBByte(x,y,0),image.getPixelXYBByte(x,y,1),image.getPixelXYBByte(x,y,2),hsb);
+                System.out.println(Arrays.toString(hsb));
+
+                double h = hsb[0];
+                double s = hsb[1];
+                double b = hsb[2];
+            }
+        }
+
+
+        return tabHistHSV;
+    }
+
 
 
 

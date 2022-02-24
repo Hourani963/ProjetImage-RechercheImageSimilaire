@@ -21,6 +21,7 @@ public class RechercheImage {
     }
     public void partieA() throws Exception {
         recherche();
+
     }
     public void partieB() throws Exception {
         //setIndexation();
