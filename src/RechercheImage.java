@@ -18,7 +18,7 @@ public class RechercheImage {
         this.pathDossier = pathDossier;
         this.image = image;
         this.repertoir = new File(this.pathDossier);
-        partieC();
+        partieB();
     }
     public void partieA() throws Exception {
         recherche();
@@ -59,12 +59,10 @@ public class RechercheImage {
 
         this.image.getFiltrationMedian();
         this.image.getHistoDiscretisNormalise();
-        double[][][] storageHistogramIndexation = new double[26][3][nombreImagesIndexation];
+        double[][][] storageHistogramIndexation;
         storageHistogramIndexation = file.readFile();
         calculeSimilariteIndexation(image,storageHistogramIndexation);
 
-        
-        //System.out.println(Arrays.deepToString(storageHistogramIndexation));
     }
 
     private void recherche() throws Exception {
