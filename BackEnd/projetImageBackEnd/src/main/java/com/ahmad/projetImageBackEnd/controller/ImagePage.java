@@ -1,24 +1,22 @@
 package com.ahmad.projetImageBackEnd.controller;
 
 
+import com.ahmad.projetImageBackEnd.algosJava.RechercheImage;
 import com.ahmad.projetImageBackEnd.service.FileUploadUtil;
+
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.RedirectView;
 
+
 import java.io.IOException;
+
 
 @RestController()
 @CrossOrigin("*")
 @RequestMapping("image")
 public class ImagePage {
-
-    @GetMapping("/upload")
-    private void getImageR(){
-        System.err.println("done");
-    }
-
 
 
     @PostMapping("/upload")
@@ -35,8 +33,9 @@ public class ImagePage {
         return new RedirectView("/users", true);
     }
 
-    @GetMapping("/getimages")
-    public MultipartFile getSimilarPhotos(){
-        return null;
+    @GetMapping("/download")
+    public String[] getSimilarPhotos() {
+        return RechercheImage.bestImagesFullPath;
     }
 }
+

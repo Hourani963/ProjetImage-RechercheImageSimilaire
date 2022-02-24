@@ -1,6 +1,7 @@
 package com.ahmad.projetImageBackEnd.service;
 
 import com.ahmad.projetImageBackEnd.algosJava.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -11,6 +12,8 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
 public class FileUploadUtil {
+
+
 
     public static void saveFile(String uploadDir, String fileName,
                                 MultipartFile multipartFile) throws IOException {
@@ -25,7 +28,7 @@ public class FileUploadUtil {
             Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
             // d'ici il faut commencer de faire les algos.
             ImageOperations requeteImage = new ImageOperations(uploadDir+"\\"+fileName);
-            RechercheImage rechercheImage = new RechercheImage("C:\\Users\\AboAlwalid\\Desktop\\GIT\\ProjetImage\\images\\motos",requeteImage);
+            RechercheImage rechercheImage = new RechercheImage("C:\\Users\\UGARIT\\Desktop\\GIT\\ProjetImage\\BackEnd\\projetImageBackEnd\\images\\motos",requeteImage);
 
             for(int i=0; i<10; i++){
                 System.out.println(rechercheImage.getBestImagesFullPath()[i]);

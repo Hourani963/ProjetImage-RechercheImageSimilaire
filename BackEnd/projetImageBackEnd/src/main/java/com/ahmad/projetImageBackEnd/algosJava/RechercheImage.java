@@ -5,14 +5,16 @@ import fr.unistra.pelican.algorithms.io.ImageLoader;
 import fr.unistra.pelican.algorithms.visualisation.Viewer2D;
 import fr.unistra.pelican.interfaces.online.Tree;
 import jdk.jshell.execution.Util;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
 public class RechercheImage {
-    Integer[] bestImages = new Integer[10];
-    String[] bestImagesFullPath = new String[10];
+    private Integer[] bestImages = new Integer[10];
+    public static String[] bestImagesFullPath = new String[10];
     private String pathDossier;
     private ImageOperations image;
     private File repertoir;
@@ -21,6 +23,8 @@ public class RechercheImage {
     TreeMap<Double, Integer> tree_mapIndexation = new TreeMap<Double, Integer>();
     private FileStorage fileStorage = new FileStorage("indexation");
     private FileStorage fileStorageHSB = new FileStorage("indexationHSB");
+
+
     public RechercheImage(String pathDossier, ImageOperations image) throws Exception {
         this.pathDossier = pathDossier;
         this.image = image;
