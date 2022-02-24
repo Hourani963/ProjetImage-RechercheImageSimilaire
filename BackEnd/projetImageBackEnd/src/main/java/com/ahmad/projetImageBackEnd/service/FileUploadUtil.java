@@ -1,5 +1,8 @@
 package com.ahmad.projetImageBackEnd.service;
 
+import com.ahmad.projetImageBackEnd.algosJava.HistogramTools;
+import com.ahmad.projetImageBackEnd.algosJava.ImageOperations;
+import com.ahmad.projetImageBackEnd.algosJava.RechercheImage;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -23,9 +26,14 @@ public class FileUploadUtil {
             Path filePath = uploadPath.resolve(fileName);
             Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
             // d'ici il faut commencer de faire les algos.
+            ImageOperations requeteImage = new ImageOperations(uploadDir+"\\"+fileName);
+
+            RechercheImage rechercheImage = new RechercheImage("C:\\Users\\AboAlwalid\\Desktop\\GIT\\ProjetImage\\images\\motos",requeteImage);
 
         } catch (IOException ioe) {
             throw new IOException("Could not save image file: " + fileName, ioe);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
