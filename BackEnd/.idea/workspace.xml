@@ -5,14 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aec23b1d-3058-4bc1-b881-62b48b33e6ad" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/projetImageBackEnd/src/main/java/com/ahmad/projetImageBackEnd/algosJava/FileStorage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/projetImageBackEnd/src/main/java/com/ahmad/projetImageBackEnd/algosJava/HistogramTools.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/projetImageBackEnd/src/main/java/com/ahmad/projetImageBackEnd/algosJava/ImageOperations.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/projetImageBackEnd/src/main/java/com/ahmad/projetImageBackEnd/algosJava/RechercheImage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/projetImageBackEnd/src/main/java/com/ahmad/projetImageBackEnd/service/FileUploadUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/projetImageBackEnd/src/main/java/com/ahmad/projetImageBackEnd/service/FileUploadUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/imageR/000.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/imageR/DSC_0001.JPG" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,5 +79,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>
