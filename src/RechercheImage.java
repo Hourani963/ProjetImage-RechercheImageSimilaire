@@ -13,6 +13,7 @@ public class RechercheImage {
     TreeMap<Double, String> tree_map = new TreeMap<Double, String>();
     TreeMap<Double, Integer> tree_mapIndexation = new TreeMap<Double, Integer>();
     private FileStorage fileStorage = new FileStorage("indexation");
+    private FileStorage fileStorageHSB = new FileStorage("indexationHSB");
     public RechercheImage(String pathDossier, ImageOperations image) throws Exception {
         this.pathDossier = pathDossier;
         this.image = image;
@@ -24,14 +25,16 @@ public class RechercheImage {
 
     }
     public void partieB() throws Exception {
-        //setIndexation();
-        rechercheIndexation();
+        //setIndexation(fileStorage);
+        rechercheIndexation(fileStorage);
     }
     public void partieC() throws Exception {
-        rechercheHSB();
+        //setIndexation(fileStorageHSB);
+        //rechercheHSB();
+        rechercheIndexation(fileStorageHSB);
     }
 
-    private void setIndexation() throws Exception {
+    private void setIndexation(FileStorage file) throws Exception {
         String listeA[] = repertoir.list();
         // crée un ficier pour le stockage
 
@@ -43,12 +46,12 @@ public class RechercheImage {
                 img.setNom(listeA[i]);
                 img.getFiltrationMedian();
                 img.getHistoDiscretisNormalise();
-                fileStorage.writeFile(img.getNom(), img.getJusthistoDiscretiNormalise());
+                file.writeFile(img.getNom(), img.getJusthistoDiscretiNormalise());
             }
             System.out.println("Successfully wrote to the file.");
         }
     }
-    private void rechercheIndexation() throws Exception {
+    private void rechercheIndexation(FileStorage file) throws Exception {
 
         String listeA[] = repertoir.list();///////////////////************** to delete
         this.nombreImagesIndexation = listeA.length;///////////////// to delete
@@ -57,7 +60,7 @@ public class RechercheImage {
         this.image.getFiltrationMedian();
         this.image.getHistoDiscretisNormalise();
         double[][][] storageHistogramIndexation = new double[26][3][nombreImagesIndexation];
-        storageHistogramIndexation = fileStorage.readFile();
+        storageHistogramIndexation = file.readFile();
         calculeSimilariteIndexation(image,storageHistogramIndexation);
 
         

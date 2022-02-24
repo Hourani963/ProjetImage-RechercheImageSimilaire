@@ -7,10 +7,10 @@ public class Main {
     public static void main(String[] args) throws Exception {
 
         long startTime = System.currentTimeMillis();
-        ImageOperations RequeteImage = new ImageOperations("C:\\Users\\ugarit\\Desktop\\GIT\\ProjetImage\\images\\test\\000.jpg");
+        ImageOperations RequeteImage = new ImageOperations("C:\\Users\\AboAlwalid\\Desktop\\GIT\\ProjetImage\\images\\test\\000.jpg");
 
 
-        RechercheImage rechercheImage = new RechercheImage("C:\\Users\\ugarit\\Desktop\\GIT\\ProjetImage\\images\\motos",RequeteImage);
+        RechercheImage rechercheImage = new RechercheImage("C:\\Users\\AboAlwalid\\Desktop\\GIT\\ProjetImage\\images\\motos",RequeteImage);
 
         //RequeteImage.getHistogramHSV();
         long endTime   = System.currentTimeMillis();

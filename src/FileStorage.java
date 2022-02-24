@@ -33,7 +33,7 @@ public class FileStorage {
 
     public void writeFile(String nomImg, double[][] histo){
         try {
-            FileWriter myWriter = new FileWriter("indexation.txt",true);
+            FileWriter myWriter = new FileWriter(nomFile + ".txt",true);
             double a = 0;
             myWriter.write(nomImg+"=>"+Arrays.deepToString(histo) +"//");
             myWriter.close();
@@ -48,7 +48,7 @@ public class FileStorage {
     public double[][][] readFile(){
         try {
 
-            String text = Files.readString(Paths.get("indexation.txt"));
+            String text = Files.readString(Paths.get(nomFile + ".txt"));
             //System.out.println(text);
             String[] allInfo = text.split("//");
 
