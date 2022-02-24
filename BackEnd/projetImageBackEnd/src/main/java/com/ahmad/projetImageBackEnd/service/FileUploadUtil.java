@@ -27,6 +27,9 @@ public class FileUploadUtil {
             ImageOperations requeteImage = new ImageOperations(uploadDir+"\\"+fileName);
             RechercheImage rechercheImage = new RechercheImage("C:\\Users\\AboAlwalid\\Desktop\\GIT\\ProjetImage\\images\\motos",requeteImage);
 
+            for(int i=0; i<10; i++){
+                System.out.println(rechercheImage.getBestImagesFullPath()[i]);
+            }
         } catch (IOException ioe) {
             throw new IOException("Could not save image file: " + fileName, ioe);
         } catch (Exception e) {
