@@ -1,6 +1,9 @@
 package com.ahmad.projetImageBackEnd.algosJava;
 
 import fr.unistra.pelican.Image;
+import fr.unistra.pelican.algorithms.io.ImageLoader;
+import fr.unistra.pelican.algorithms.visualisation.Viewer2D;
+import fr.unistra.pelican.interfaces.online.Tree;
 import jdk.jshell.execution.Util;
 
 import java.io.File;
@@ -8,6 +11,8 @@ import java.io.IOException;
 import java.util.*;
 
 public class RechercheImage {
+    Integer[] bestImages = new Integer[10];
+
     private String pathDossier;
     private ImageOperations image;
     private File repertoir;
@@ -55,7 +60,7 @@ public class RechercheImage {
     }
     private void rechercheIndexation(FileStorage file) throws Exception {
 
-        String listeA[] = repertoir.list();///////////////////************** to delete
+        String listeA[] = this.repertoir.list();///////////////////************** to delete
         this.nombreImagesIndexation = listeA.length;///////////////// to delete
 
 
@@ -113,6 +118,7 @@ public class RechercheImage {
             //************ get first 10 elements
             getMeuilleurImagesSimilaire(tree_map);
             //System.out.println(tree_map);
+
         } else {
             System.err.println("Nom de repertoire invalide");
         }
@@ -120,6 +126,7 @@ public class RechercheImage {
 
     private void calculeSimilariteIndexation(ImageOperations imageR, double[][][] histogramsToutesImages) throws IOException {
         System.err.println(nombreImagesIndexation);
+        String liste[] = repertoir.list();
         for(int i=0; i<this.nombreImagesIndexation; i++){
             double distanceR = 0;
             double distanceG = 0;
@@ -141,8 +148,16 @@ public class RechercheImage {
         getMeuilleurImagesSimilaire(tree_mapIndexation);
         //System.out.println(tree_mapIndexation);
         //TreeMap
+        for(int i =0; i<10; i++){
+            Image[] images = new Image[10];
+            assert liste != null;
+            System.out.println(pathDossier+"\\"+liste[bestImages[i]]);
+            //images[i] = ImageLoader.exec(pathDossier+"\\"+liste[bestImages[i]]);
+            //Viewer2D.exec(images[i]);
+        }
 
     }
+
     private void calculeSimilarite(ImageOperations imageR, ImageOperations imageI) throws IOException {
         double distanceR = 0;
         double distanceG = 0;
@@ -166,7 +181,7 @@ public class RechercheImage {
     private void getMeuilleurImagesSimilaire(TreeMap map){
         // ICI JE Choisie les meuillers 10 images
         SortedMap<Double, String> firstTen = putFirstEntries(10, map);
-        System.err.println(firstTen);
+        //System.err.println(firstTen);
     }
 
 
@@ -183,19 +198,17 @@ public class RechercheImage {
         sortedEntries.addAll(map.entrySet());
         return sortedEntries;
     }
-    private static <V, K> SortedMap<K,V> putFirstEntries(int max, SortedMap<K,V> source) {
+    private <V, K> SortedMap<K,V> putFirstEntries(int max, SortedMap<K,V> source) {
         int count = 0;
         TreeMap<K,V> target = new TreeMap<K,V>();
         for (Map.Entry<K,V> entry:source.entrySet()) {
             if (count >= max) break;
 
+            this.bestImages[count] = (Integer) entry.getValue();
             target.put(entry.getKey(), entry.getValue());
             count++;
         }
         return target;
     }
-
-
-
 
 }

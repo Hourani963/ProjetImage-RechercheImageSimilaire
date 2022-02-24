@@ -34,4 +34,9 @@ public class ImagePage {
 
         return new RedirectView("/users", true);
     }
+
+    @GetMapping("/getimages")
+    public MultipartFile getSimilarPhotos(){
+        return null;
+    }
 }
