@@ -10,9 +10,9 @@ public class Main {
         ImageOperations RequeteImage = new ImageOperations("C:\\Users\\ugarit\\Desktop\\GIT\\ProjetImage\\images\\test\\000.jpg");
 
 
-        //RechercheImage rechercheImage = new RechercheImage("C:\\Users\\ugarit\\Desktop\\GIT\\ProjetImage\\images\\motos",RequeteImage);
+        RechercheImage rechercheImage = new RechercheImage("C:\\Users\\ugarit\\Desktop\\GIT\\ProjetImage\\images\\motos",RequeteImage);
 
-        RequeteImage.getHistogramHSV();
+        //RequeteImage.getHistogramHSV();
         long endTime   = System.currentTimeMillis();
         long totalTime = (endTime - startTime)/1000;
         System.err.println("Temps d'exe " + totalTime + "s");

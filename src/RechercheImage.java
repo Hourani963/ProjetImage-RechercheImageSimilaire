@@ -17,7 +17,7 @@ public class RechercheImage {
         this.pathDossier = pathDossier;
         this.image = image;
         this.repertoir = new File(this.pathDossier);
-        partieB();
+        partieC();
     }
     public void partieA() throws Exception {
         recherche();
@@ -26,6 +26,9 @@ public class RechercheImage {
     public void partieB() throws Exception {
         //setIndexation();
         rechercheIndexation();
+    }
+    public void partieC() throws Exception {
+        rechercheHSB();
     }
 
     private void setIndexation() throws Exception {
@@ -72,6 +75,31 @@ public class RechercheImage {
                 img.setNom(liste[i]);
                 img.getFiltrationMedian();
                 img.getHistoDiscretisNormalise();
+                //************ Calculer
+                calculeSimilarite(image, img);
+                //************ Organiser
+                tree_map.put(img.getValeurSimilarite(),img.getNom());
+            }
+            //************ Sort TreeMap
+            entriesSortedByValues(tree_map);
+            //************ get first 10 elements
+            getMeuilleurImagesSimilaire(tree_map);
+            //System.out.println(tree_map);
+        } else {
+            System.err.println("Nom de repertoire invalide");
+        }
+    }
+    private void rechercheHSB() throws Exception {
+        String liste[] = repertoir.list();
+
+        this.image.getFiltrationMedian();
+        if (liste != null) {
+            for (int i = 0; i < liste.length; i++) {
+                //System.out.println(liste[i]);
+                ImageOperations img = new ImageOperations(pathDossier+"\\"+liste[i]);
+                img.setNom(liste[i]);
+                img.getFiltrationMedian();
+                img.getHistoDiscretisNormaliseHSB();
                 //************ Calculer
                 calculeSimilarite(image, img);
                 //************ Organiser

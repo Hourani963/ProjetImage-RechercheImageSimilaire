@@ -81,8 +81,18 @@ public class ImageOperations {
         this.histogramDiscretis = histogramTools.discretisationHistogram(getHistogramRGB());
         return this.histogramDiscretis;
     }
+    public double[][] getHistogramDiscretisHSB() throws IOException {
+        HistogramTools histogramTools = new HistogramTools();
+        this.histogramDiscretis = histogramTools.discretisationHistogram(getHistogramHSV());
+        return this.histogramDiscretis;
+    }
 
     public double[][] getHistoDiscretisNormalise() throws IOException {
+        HistogramTools histogramTools = new HistogramTools();
+        this.histoDiscretiNormalise = histogramTools.normalisationHisto(getHistogramDiscretisHSB(), this.largeur*this.hauteur);
+        return histoDiscretiNormalise;
+    }
+    public double[][] getHistoDiscretisNormaliseHSB() throws IOException {
         HistogramTools histogramTools = new HistogramTools();
         this.histoDiscretiNormalise = histogramTools.normalisationHisto(getHistogramDiscretis(), this.largeur*this.hauteur);
         return histoDiscretiNormalise;
@@ -224,29 +234,26 @@ public class ImageOperations {
         return new double[] { h, s, v };
     }
 
-    public void getHistogramHSV() {
+    public double[][] getHistogramHSV() throws IOException {
         int count=0;
-        // précision 0.11 * 100 = 11
-        double[][] tabHistHSB = new double[101][3];
+        // précision 0.11 * 255 = 28
+        double[][] tabHistHSB = new double[256][3];
         for(int x=0; x<largeur-1;x++){
             for(int y=0; y<hauteur-1; y++){
                 float[] hsb = new float[3];
                 java.awt.Color.RGBtoHSB(image.getPixelXYBByte(x,y,0),image.getPixelXYBByte(x,y,1),image.getPixelXYBByte(x,y,2),hsb);
                 //System.out.println(Arrays.toString(hsb));
 
-                double h = Math.round(hsb[0] * 100.0);
-                double s = Math.round(hsb[1] * 100.0);
-                double b = Math.round(hsb[2] * 100.0);
+                double h = Math.round(hsb[0] * 255.0);
+                double s = Math.round(hsb[1] * 255.0);
+                double b = Math.round(hsb[2] * 255.0);
 
                 tabHistHSB[(int) h][0]++;
                 tabHistHSB[(int) s][1]++;
                 tabHistHSB[(int) b][2]++;
             }
         }
-
-        System.out.println(Arrays.deepToString(tabHistHSB));
-        System.out.println(count);
-
+        return tabHistHSB;
     }
 
 
