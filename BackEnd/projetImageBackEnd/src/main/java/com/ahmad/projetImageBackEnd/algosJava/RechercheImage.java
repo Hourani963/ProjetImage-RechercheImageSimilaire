@@ -12,7 +12,7 @@ import java.util.*;
 
 public class RechercheImage {
     Integer[] bestImages = new Integer[10];
-
+    String[] bestImagesFullPath = new String[10];
     private String pathDossier;
     private ImageOperations image;
     private File repertoir;
@@ -152,10 +152,15 @@ public class RechercheImage {
             Image[] images = new Image[10];
             assert liste != null;
             System.out.println(pathDossier+"\\"+liste[bestImages[i]]);
+            bestImagesFullPath[i] = pathDossier+"\\"+liste[bestImages[i]];
             //images[i] = ImageLoader.exec(pathDossier+"\\"+liste[bestImages[i]]);
             //Viewer2D.exec(images[i]);
         }
 
+    }
+
+    public String[] getBestImagesFullPath() {
+        return bestImagesFullPath;
     }
 
     private void calculeSimilarite(ImageOperations imageR, ImageOperations imageI) throws IOException {
