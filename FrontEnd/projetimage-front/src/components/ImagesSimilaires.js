@@ -9,18 +9,20 @@ const ImagesSimilaires = () =>{
     const fetchImagesSimilaires = () =>{
         axios.get('http://localhost:1234/image/download').then(res => {
             setImageSimilaire(res.data);
+            console.log(res.data);
         });
     };
 
     useEffect(() => {
         fetchImagesSimilaires()
+        
     }, []);
 
 
     return(
         imageSimilaire.map((image, index) =>{
             return(
-                <div key={index} className="image">
+                <div key={index} className="image" alt={`photo similare ${index}`}>
                     <img src={image}/>
                 </div>
             )

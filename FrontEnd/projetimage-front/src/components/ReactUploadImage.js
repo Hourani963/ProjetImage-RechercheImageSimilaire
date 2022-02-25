@@ -20,7 +20,7 @@ class ReactUploadImage extends React.Component {
                 'content-type': 'multipart/form-data'
             }
         };
-        axios.post("http://localhost:8080/image/upload",formData,config)
+        axios.post("http://localhost:1234/image/upload",formData,config)
             .then((response) => {
                 console.log("The file is successfully uploaded");
             }).catch((error) => {
