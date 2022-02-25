@@ -4,6 +4,7 @@ package com.ahmad.projetImageBackEnd.controller;
 import com.ahmad.projetImageBackEnd.algosJava.RechercheImage;
 import com.ahmad.projetImageBackEnd.service.FileUploadUtil;
 
+import org.springframework.http.MediaType;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -11,6 +12,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 
 import java.io.IOException;
+import java.io.InputStream;
 
 
 @RestController()
@@ -37,5 +39,7 @@ public class ImagePage {
     public String[] getSimilarPhotos() {
         return RechercheImage.bestImagesFullPath;
     }
+
+
 }
 
