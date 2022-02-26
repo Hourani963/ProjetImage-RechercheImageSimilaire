@@ -28,11 +28,9 @@ public class FileUploadUtil {
             Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
             // d'ici il faut commencer de faire les algos.
             ImageOperations requeteImage = new ImageOperations(uploadDir+"\\"+fileName);
-            RechercheImage rechercheImage = new RechercheImage("C:\\Users\\AboAlwalid\\Desktop\\GIT\\ProjetImage\\BackEnd\\images\\motos",requeteImage);
+            RechercheImage rechercheImage = new RechercheImage("C:\\Users\\ugarit\\Desktop\\GIT\\ProjetImage\\BackEnd\\images\\motos",requeteImage);
 
-            for(int i=0; i<10; i++){
-                System.out.println(rechercheImage.getBestImagesFullPath()[i]);
-            }
+
         } catch (IOException ioe) {
             throw new IOException("Could not save image file: " + fileName, ioe);
         } catch (Exception e) {

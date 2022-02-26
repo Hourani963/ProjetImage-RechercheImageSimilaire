@@ -3,9 +3,13 @@ import axios from 'axios'
 
 
 class ImagesSimilaires extends React.Component{
-    state = {
-        imageSimilaire: []
-        
+    constructor(props){
+        super(props);
+        this.state= { 
+            date: new Date(),
+            imageSimilaire :[],
+         };
+       
       }
 
       componentDidMount() {
@@ -13,18 +17,32 @@ class ImagesSimilaires extends React.Component{
             const imageSimilaire = res.data;
             this.setState({ imageSimilaire });
         });
+        
       };
 
+
       render(){
+        
         return(
-            this.state.imageSimilaire.map((image, index) =>{
+            <div>
                 
-                return(
-                    <div key={index} className="image" alt={`photo similare ${index}`}>
-                        <img src={`http://localhost:1234/image/getimage/${image}`}/>
-                    </div>
-                )
-            })
+                {this.state.imageSimilaire.length > 0 ? 
+                <>
+                {this.state.imageSimilaire.map((image, index) =>{
+                    return(
+                        
+                        <div key={index} className="image" alt={`photo similare ${index}`}>
+                            <img src={`http://localhost:1234/image/getimage/${image}`}/>
+                        </div>
+                    )
+                })}
+                </>
+                :
+                null
+            }
+            </div>
+            
+            
         )
       }
 }
