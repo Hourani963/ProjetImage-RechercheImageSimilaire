@@ -1,5 +1,6 @@
-import React from 'react'
-const axios = require("axios");
+import React from 'react';
+import axios from 'axios';
+
 
 class ReactUploadImage extends React.Component {
 

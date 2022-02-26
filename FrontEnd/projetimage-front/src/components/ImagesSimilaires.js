@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react"
-import axios from 'axios'
+import axios from 'axios';
+import './ImagesSimilaires.css'
 
 
 class ImagesSimilaires extends React.Component{
@@ -24,7 +25,7 @@ class ImagesSimilaires extends React.Component{
       render(){
         
         return(
-            <div>
+            <div className="container">
                 
                 {this.state.imageSimilaire.length > 0 ? 
                 <>
