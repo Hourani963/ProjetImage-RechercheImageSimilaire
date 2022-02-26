@@ -156,7 +156,7 @@ public class RechercheImage {
             Image[] images = new Image[10];
             assert liste != null;
             System.out.println(pathDossier+"\\"+liste[bestImages[i]]);
-            bestImagesFullPath[i] = pathDossier+"\\"+liste[bestImages[i]];
+            bestImagesFullPath[i] =liste[bestImages[i]];
             //images[i] = ImageLoader.exec(pathDossier+"\\"+liste[bestImages[i]]);
             //Viewer2D.exec(images[i]);
         }
