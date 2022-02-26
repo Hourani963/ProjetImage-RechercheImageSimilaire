@@ -4,6 +4,7 @@ package com.ahmad.projetImageBackEnd.controller;
 import com.ahmad.projetImageBackEnd.algosJava.RechercheImage;
 import com.ahmad.projetImageBackEnd.service.FileUploadUtil;
 
+import org.apache.commons.io.IOUtils;
 import org.springframework.http.MediaType;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
@@ -11,8 +12,12 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.RedirectView;
 
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 
 @RestController()
@@ -40,6 +45,26 @@ public class ImagePage {
         return RechercheImage.bestImagesFullPath;
     }
 
+    @GetMapping("getimage/{id}")
+    @ResponseBody
+    public byte[] download(@PathVariable("id") String imageName) {
+        try {
+            System.err.println(RechercheImage.pathDossier + "\\"+ imageName);
+            File file = new File(RechercheImage.pathDossier + "\\"+ imageName);
+            InputStream targetStream = new FileInputStream(file);
+            return IOUtils.toByteArray(targetStream);
+        } catch (IOException e) {
+            throw new IllegalStateException("Failed to download file From Local", e);
+        }
+    }
 
 }
+
+
+
+
+
+
+
+
 

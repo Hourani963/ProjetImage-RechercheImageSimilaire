@@ -21,9 +21,10 @@ const ImagesSimilaires = () =>{
 
     return(
         imageSimilaire.map((image, index) =>{
+            console.log(`http://localhost/1234/image/getimage/${image}`)
             return(
                 <div key={index} className="image" alt={`photo similare ${index}`}>
-                    <img src={`http://localhost/1234/image/getimage/${image}`}/>
+                    <img src={`http://localhost:1234/image/getimage/${image}`}/>
                 </div>
             )
         })

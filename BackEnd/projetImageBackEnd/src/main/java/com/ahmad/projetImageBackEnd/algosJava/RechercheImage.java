@@ -15,7 +15,7 @@ import java.util.*;
 public class RechercheImage {
     private Integer[] bestImages = new Integer[10];
     public static String[] bestImagesFullPath = new String[10];
-    private String pathDossier;
+    public static String pathDossier;
     private ImageOperations image;
     private File repertoir;
     private int nombreImagesIndexation;
