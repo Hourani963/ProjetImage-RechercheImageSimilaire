@@ -5,12 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aec23b1d-3058-4bc1-b881-62b48b33e6ad" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projetImageBackEnd/src/main/java/com/ahmad/projetImageBackEnd/algosJava/RechercheImage.java" beforeDir="false" afterPath="$PROJECT_DIR$/projetImageBackEnd/src/main/java/com/ahmad/projetImageBackEnd/algosJava/RechercheImage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projetImageBackEnd/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/projetImageBackEnd/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/projetImageBackEnd/src/main/java/com/ahmad/projetImageBackEnd/controller/ImagePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/projetImageBackEnd/src/main/java/com/ahmad/projetImageBackEnd/controller/ImagePage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projetImageBackEnd/target/classes/com/ahmad/projetImageBackEnd/algosJava/RechercheImage$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/projetImageBackEnd/target/classes/com/ahmad/projetImageBackEnd/algosJava/RechercheImage$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projetImageBackEnd/target/classes/com/ahmad/projetImageBackEnd/algosJava/RechercheImage.class" beforeDir="false" afterPath="$PROJECT_DIR$/projetImageBackEnd/target/classes/com/ahmad/projetImageBackEnd/algosJava/RechercheImage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projetImageBackEnd/target/classes/com/ahmad/projetImageBackEnd/controller/ImagePage.class" beforeDir="false" afterPath="$PROJECT_DIR$/projetImageBackEnd/target/classes/com/ahmad/projetImageBackEnd/controller/ImagePage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projetImageBackEnd/target/classes/com/ahmad/projetImageBackEnd/algosJava/HistogramTools.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/projetImageBackEnd/target/classes/com/ahmad/projetImageBackEnd/algosJava/RechercheImage$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/projetImageBackEnd/target/classes/com/ahmad/projetImageBackEnd/algosJava/RechercheImage.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

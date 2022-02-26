@@ -4,8 +4,8 @@ package com.ahmad.projetImageBackEnd.controller;
 import com.ahmad.projetImageBackEnd.algosJava.RechercheImage;
 import com.ahmad.projetImageBackEnd.service.FileUploadUtil;
 
+
 import org.apache.commons.io.IOUtils;
-import org.springframework.http.MediaType;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -16,8 +16,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+
 
 
 @RestController()
