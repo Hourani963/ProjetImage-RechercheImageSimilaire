@@ -137,14 +137,15 @@ public class RechercheImage {
             double distanceB = 0;
             double distanceTotal=0;
             for(int j=0; j< imageR.getJusthistoDiscretiNormalise().length; j++){
-                distanceR += Math.pow(imageR.getHistoDiscretisNormalise()[j][0] - histogramsToutesImages[j][0][i],2);
-                distanceG += Math.pow(imageR.getHistoDiscretisNormalise()[j][1] - histogramsToutesImages[j][1][i],2);
-                distanceB += Math.pow(imageR.getHistoDiscretisNormalise()[j][2] - histogramsToutesImages[j][2][i],2);
+                distanceR += Math.pow(imageR.getJusthistoDiscretiNormalise()[j][0] - histogramsToutesImages[j][0][i],2);
+                distanceG += Math.pow(imageR.getJusthistoDiscretiNormalise()[j][1] - histogramsToutesImages[j][1][i],2);
+                distanceB += Math.pow(imageR.getJusthistoDiscretiNormalise()[j][2] - histogramsToutesImages[j][2][i],2);
             }
             distanceR = Math.sqrt(distanceR);
             distanceG = Math.sqrt(distanceG);
             distanceB = Math.sqrt(distanceB);
             distanceTotal =distanceR+distanceG+distanceB;
+            System.err.println("La distance total est "+ distanceTotal);
             tree_mapIndexation.put(distanceTotal,i);
         }
         entriesSortedByValues(tree_mapIndexation);
