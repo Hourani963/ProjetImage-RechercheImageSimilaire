@@ -49,7 +49,7 @@ public class ImagePage {
     @ResponseBody
     public byte[] download(@PathVariable("id") String imageName) {
         try {
-            System.err.println(RechercheImage.pathDossier + "\\"+ imageName);
+            //ystem.err.println(RechercheImage.pathDossier + "\\"+ imageName);
             File file = new File(RechercheImage.pathDossier + "\\"+ imageName);
             InputStream targetStream = new FileInputStream(file);
             return IOUtils.toByteArray(targetStream);
