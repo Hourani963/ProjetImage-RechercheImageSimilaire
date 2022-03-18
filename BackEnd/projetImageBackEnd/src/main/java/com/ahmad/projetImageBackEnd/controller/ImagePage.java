@@ -8,7 +8,7 @@ import com.ahmad.projetImageBackEnd.service.FileUploadUtil;
 import org.apache.commons.io.IOUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 
