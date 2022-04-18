@@ -1,13 +1,13 @@
 package com.ahmad.projetImageBackEnd.algosJava;
 
-import fr.unistra.pelican.ByteImage;
-import fr.unistra.pelican.Image;
+
+import fr.unistra.pelican.*;
 import fr.unistra.pelican.algorithms.io.ImageLoader;
-import fr.unistra.pelican.util.Color;
+
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
+
 import java.util.Collections;
 
 public class ImageOperations {

@@ -2,7 +2,7 @@ package com.ahmad.projetImageBackEnd.controller;
 
 
 import com.ahmad.projetImageBackEnd.algosJava.RechercheImage;
-import com.ahmad.projetImageBackEnd.service.FileUploadUtil;
+import com.ahmad.projetImageBackEnd.service.*;
 
 
 import org.apache.commons.io.IOUtils;

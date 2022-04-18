@@ -1,12 +1,7 @@
 package com.ahmad.projetImageBackEnd.algosJava;
 
 import fr.unistra.pelican.Image;
-import fr.unistra.pelican.algorithms.io.ImageLoader;
-import fr.unistra.pelican.algorithms.visualisation.Viewer2D;
-import fr.unistra.pelican.interfaces.online.Tree;
-import jdk.jshell.execution.Util;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+
 
 import java.io.File;
 import java.io.IOException;
@@ -25,9 +20,9 @@ public class RechercheImage {
     private FileStorage fileStorageHSB = new FileStorage("indexationHSB");
 
 
-    public RechercheImage(String pathDossier, ImageOperations image) throws Exception {
+    public RechercheImage(String pathDossier, ImageOperations imagee) throws Exception {
         this.pathDossier = pathDossier;
-        this.image = image;
+        image = imagee;
         this.repertoir = new File(this.pathDossier);
         partieB();
     }
@@ -68,8 +63,8 @@ public class RechercheImage {
         this.nombreImagesIndexation = listeA.length;///////////////// to delete
 
 
-        this.image.getFiltrationMedian();
-        this.image.getHistoDiscretisNormalise();
+        image.getFiltrationMedian();
+        image.getHistoDiscretisNormalise();
         double[][][] storageHistogramIndexation;
         storageHistogramIndexation = file.readFile();
         calculeSimilariteIndexation(image,storageHistogramIndexation);
@@ -79,7 +74,7 @@ public class RechercheImage {
     private void recherche() throws Exception {
         String liste[] = repertoir.list();
 
-        this.image.getFiltrationMedian();
+        image.getFiltrationMedian();
         if (liste != null) {
             for (int i = 0; i < liste.length; i++) {
                 //System.out.println(liste[i]);
@@ -104,7 +99,7 @@ public class RechercheImage {
     private void rechercheHSB() throws Exception {
         String liste[] = repertoir.list();
 
-        this.image.getFiltrationMedian();
+        image.getFiltrationMedian();
         if (liste != null) {
             for (int i = 0; i < liste.length; i++) {
                 //System.out.println(liste[i]);
